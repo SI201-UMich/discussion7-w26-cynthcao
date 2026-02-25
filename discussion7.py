@@ -64,6 +64,7 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
     price_sum = {}
     price_counts = {}
 
+
     for listing in listings:
         neighbourhood_group = listing["neighbourhood_group"]
         room_type = listing["room_type"]
@@ -78,9 +79,11 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
             price_sum[listing_key] = price
             price_counts[listing_key] = 1
 
+
     price_average = {}
     for k in price_sum:
         price_average[k] = price_sum[k] / price_counts[k]
+
 
     return price_average
     # pass
