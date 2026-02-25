@@ -31,7 +31,7 @@ def load_listings(f):
     full_path = os.path.join(base_path, f)
 
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
-    with open(full_path) as f:
+    with open(full_path, "r", encoding="utf-8") as f:
         reader = csv.reader(f)
         header = next(reader)
         all_listings = []
@@ -41,7 +41,7 @@ def load_listings(f):
                 item[column] = row[i]
             all_listings.append(item)
         return all_listings
-    pass
+    # pass
 
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
@@ -65,7 +65,7 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
     price_counts = {}
 
     for listing in listings:
-        neighbourhood_group = listing[""]
+        neighbourhood_group = listing["neighbourhood_group"]
         room_type = listing["room_type"]
         price = float(listing["price"])
 
@@ -83,7 +83,7 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         price_average[k] = price_sum[k] / price_counts[k]
 
     return price_average
-    pass
+    # pass
 
 
 
@@ -105,7 +105,14 @@ def write_summary_csv(out_filename, avg_prices):
         None
             Writes a CSV file with header: neighbourhood_group, room_type, average_price
     """
-    pass
+    with open(out_filename, 'w') as fout:
+        writer = csv.writer(fout)
+        writer.writerow(["neighbourhood_group", "room_type", "average_price"])
+
+        for key, value in avg_prices:
+            writer.writerow([key [0], key [1], value])
+    return
+    # pass
 
 ###############################################################################
 ##### UNIT TESTS (Do not modify the code below!)
